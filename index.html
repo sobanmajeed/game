@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <style>
+        #obj {
+            height: 100px;
+            width: 100px;
+            background-color: aqua;
+            display: "none";
+            position: relative;
+
+        }
+
+        button {
+
+
+            font-weight: bold;
+            font-size: 14px;
+            background-color: aqua;
+            border: 0px;
+            padding: 0.5%;
+            border-radius: 10px;
+            margin: 0.1%;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Test Your Reaction Speed!</h2>
+    <p>click on the box as quick as you can!</p>
+    <p>Your time: <span id="timetaken"></span></p>
+    <div id="obj">
+
+    </div>
+    <!--JS-->
+    <script type="text/javascript">
+        let start = new Date().getTime();
+        function getRandomColor() {
+
+            const letters = '0123456789ABCDEF';
+
+            let color = '#';
+
+            for (let i = 0; i < 6; i++) {
+
+                color += letters[Math.floor(Math.random() * 16)];
+
+            }
+
+            return color;
+        }
+        function makeshape() {
+            let w = (Math.random() *200)+100 ;
+            let top = Math.random() * 400;
+            let left = Math.random() * 400;
+if(Math.random()>0.5){
+    document.getElementById("obj").style.borderRadius="50%";
+    
+}
+else{
+    document.getElementById("obj").style.borderRadius="0%";
+
+}
+
+            document.getElementById("obj").style.width = w + "px";
+            document.getElementById("obj").style.height = w + "px";
+
+            document.getElementById("obj").style.backgroundColor = getRandomColor();
+            document.getElementById("obj").style.top = top + "px";
+            document.getElementById("obj").style.left = left + "px";
+
+            document.getElementById("obj").style.display = "block";
+            start = new Date().getTime();
+        }
+
+        function appeardelay() {
+            setTimeout(makeshape, Math.random() + 1000);
+        }
+        appeardelay();
+        document.getElementById("obj").onclick = function () {
+            document.getElementById("obj").style.display = "none";
+            let end = new Date().getTime();
+            let time = (end - start) / 1000;
+            document.getElementById("timetaken").innerHTML = time + "sec";
+            appeardelay();
+        }
+
+    </script>
+    <link rel="JavaScript" href="script.js">
+</body>
+
+</html>
